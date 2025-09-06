@@ -1,0 +1,23 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode
+.vscode/
+
+# Database & credentials
+*.db
+*.sqlite3
+serviceAccountKey.json
+
+# Node.js / Frontend
+node_modules/
+dist/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
