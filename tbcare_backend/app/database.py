@@ -5,6 +5,7 @@ import os
 
 # Railway kasih DATABASE_URL di env var
 DATABASE_URL = os.getenv("DATABASE_URL", "mysql://root:OWAKGUUYHmmwmmdPUqRTckQDTrbsjYGs@mysql.railway.internal:3306/railway")
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:Smiski77!@localhost/tbcare")
 
 engine = create_engine(DATABASE_URL)
 

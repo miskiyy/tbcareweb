@@ -1,13 +1,14 @@
-# app/main.py
 from fastapi import FastAPI
-from . import models
-from .database import engine
+from app.database import Base, engine
+from app.routers import users, pasien
 
-app = FastAPI()
+Base.metadata.create_all(bind=engine)
 
-# create tables
-models.Base.metadata.create_all(bind=engine)
+app = FastAPI(title="TB Care API")
+
+app.include_router(users.router, prefix="/users", tags=["Users"])
+app.include_router(pasien.router, prefix="/pasien", tags=["Pasien"])
 
 @app.get("/")
-def root():
-    return {"message": "TBcare API is running!"}
+async def root():
+    return {"message": "Hello from FastAPI 🚀"}
