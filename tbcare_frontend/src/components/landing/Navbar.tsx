@@ -16,14 +16,21 @@ const Navbar = ({ activePage, setActivePage }) => {
             <Link to="/" className={`font-medium transition-colors ${activePage === "Home" ? "text-teal-400 border-b-2 border-teal-400" : "text-gray-600 hover:text-teal-600"}`} onClick={() => setActivePage("Home")}>
               Home
             </Link>
+            <Link to="/download" className={`font-medium transition-colors ${activePage === "download" ? "text-teal-400 border-b-2 border-teal-400" : "text-gray-600 hover:text-teal-600"}`} onClick={() => setActivePage("download")}>
+              Download App
+            </Link>
             <Link to="/about" className={`font-medium transition-colors ${activePage === "About" ? "text-teal-400 border-b-2 border-teal-400" : "text-gray-600 hover:text-teal-600"}`} onClick={() => setActivePage("About")}>
               About us
             </Link>
           </div>
 
           <div className="flex space-x-4">
-            <button className="px-6 py-2 border border-gray-300 text-gray-800 font-semibold rounded-full shadow-sm hover:bg-gray-100 transition duration-300 transform hover:scale-105">Sign In</button>
-            <button className="px-6 py-2 bg-teal-400 text-white font-semibold rounded-full shadow-lg hover:bg-teal-500 transition duration-300 transform hover:scale-105">Log In</button>
+            <Link to="/signin" className="px-6 py-2 border border-gray-300 text-gray-800 font-semibold rounded-full shadow-sm hover:bg-gray-100 transition duration-300 transform hover:scale-105" onClick={() => setActivePage("SignIn")}>
+              Sign In
+            </Link>
+            <Link to="/signup" className="px-6 py-2 bg-teal-400 text-white font-semibold rounded-full shadow-lg hover:bg-teal-500 transition duration-300 transform hover:scale-105" onClick={() => setActivePage("SignUp")}>
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>

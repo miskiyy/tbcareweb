@@ -127,7 +127,7 @@ const About = () => {
         {/* Proposal */}
         <section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-teal-600 mb-6">Sistem Peringatan Dini Tuberkulosis Berdasarkan Suara Batuk dengan Menggunakan Model Deep Learning Sebagai Upaya Eliminasi Tuberkulosis 2030</h3>
+            <h3 className="text-xl md:text-1xl font-bold text-teal-600 mb-6">Sistem Peringatan Dini Tuberkulosis Berdasarkan Suara Batuk dengan Menggunakan Model Deep Learning Sebagai Upaya Eliminasi Tuberkulosis 2030</h3>
             <p className="text-gray-600 leading-relaxed text-lg">
               <b>TBCare</b> adalah sebuah sistem inovatif yang dikembangkan untuk menjawab tantangan Tuberkulosis di Indonesia. TBCare memanfaatkan teknologi kecerdasan buatan dengan <b>menganalisis suara batuk</b> sebagai alat pra-skrining
               yang cepat, non-invasif, dan mudah diakses.
