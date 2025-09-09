@@ -25,6 +25,8 @@ import FormElements from "./pages/Forms/FormElements";
 import Blank from "./pages/Blank";
 import NotFound from "./pages/OtherPage/NotFound";
 import FormBaru from "./pages/Dashboard/FormBaru";
+import FormProgres from "./pages/Dashboard/FormProgres";
+import Data from "./pages/Dashboard/Data";
 
 function AppContent() {
   const [activePage, setActivePage] = useState("Home");
@@ -62,8 +64,10 @@ function AppContent() {
             <Route path="videos" element={<Videos />} />
             <Route path="line-chart" element={<LineChart />} />
             <Route path="bar-chart" element={<BarChart />} />
+            <Route path="formbaru" element={<FormBaru />} />
+            <Route path="formprogres" element={<FormProgres />} />
+            <Route path="data" element={<Data />} />
           </Route>
-          
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

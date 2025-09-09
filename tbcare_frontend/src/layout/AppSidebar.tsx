@@ -15,20 +15,20 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Home",
-    path: "/home",
+    path: "/dashboard",
   },
   {
     name: "Form",
     icon: <ListIcon />,
     subItems: [
-      { name: "Form Pasien Baru", path: "/form/pasien-baru", pro: false },
-      { name: "Form Progres", path: "/form/progres", pro: false },
+      { name: "Form Pasien Baru", path: "/dashboard/formbaru" },
+      { name: "Form Progres", path: "/dashboard/formprogres" },
     ],
   },
   {
     icon: <TableIcon />,
     name: "Data",
-    path: "/data",
+    path: "/dashboard/data",
   },
 ];
 

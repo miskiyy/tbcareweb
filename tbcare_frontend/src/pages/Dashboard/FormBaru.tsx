@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { initializeApp } from "firebase/app";
-import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { ChevronLeftIcon } from "lucide-react";
-
-// Global variables from the environment
-const firebaseConfig = JSON.parse(typeof __firebase_config !== "undefined" ? __firebase_config : "{}");
-const initialAuthToken = typeof __initial_auth_token !== "undefined" ? __initial_auth_token : null;
-const appId = typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+import { collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../../services/firebase";
 
 const PatientForm = () => {
-  const [db, setDb] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [authReady, setAuthReady] = useState(false);
   const [formData, setFormData] = useState({
     nik: "",
     nama: "",
@@ -28,35 +18,6 @@ const PatientForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    const initFirebase = async () => {
-      try {
-        const app = initializeApp(firebaseConfig);
-        const firestore = getFirestore(app);
-        const authService = getAuth(app);
-        setDb(firestore);
-
-        onAuthStateChanged(authService, (user) => {
-          if (user) {
-            setUserId(user.uid);
-          } else {
-            console.log("No user is signed in.");
-          }
-          setAuthReady(true);
-        });
-
-        if (initialAuthToken) {
-          await signInWithCustomToken(authService, initialAuthToken);
-        } else {
-          await signInAnonymously(authService);
-        }
-      } catch (e) {
-        console.error("Firebase initialization error: ", e);
-      }
-    };
-    initFirebase();
-  }, [initialAuthToken]);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -67,17 +28,11 @@ const PatientForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!authReady || !db) {
-      setMessage("Firebase is not ready yet. Please wait.");
-      return;
-    }
-
     setLoading(true);
     setMessage("");
-
     try {
-      const pasienCollectionRef = collection(db, `artifacts/${appId}/users/${userId}/pasien`);
-      await addDoc(pasienCollectionRef, formData);
+      // Simpan ke koleksi "pasien"
+      await addDoc(collection(db, "pasien"), formData);
       setMessage("Data pasien berhasil disimpan!");
       setFormData({
         nik: "",
@@ -91,16 +46,11 @@ const PatientForm = () => {
         riwayat_tb_tidak_diketahui: false,
       });
     } catch (e) {
-      console.error("Error adding document: ", e);
       setMessage("Gagal menyimpan data. Coba lagi.");
     } finally {
       setLoading(false);
     }
   };
-
-  if (!authReady) {
-    return <div className="text-center py-10">Loading...</div>;
-  }
 
   return (
     <div className="flex flex-col flex-1 w-full overflow-y-auto no-scrollbar">
@@ -197,7 +147,7 @@ const PatientForm = () => {
                   name="alamat"
                   value={formData.alamat}
                   onChange={handleChange}
-                  rows="3"
+                  rows={3}
                   placeholder="Masukkan alamat lengkap pasien"
                   className="w-full px-4 py-2 border rounded-lg focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
                 ></textarea>
