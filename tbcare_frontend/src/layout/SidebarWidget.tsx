@@ -2,21 +2,17 @@ export default function SidebarWidget() {
   return (
     <div
       className={`
-        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]`}
+        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-teal-400 px-4 py-5 text-center shadow-lg`}
     >
-      <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
-        #1 Tailwind CSS Dashboard
-      </h3>
-      <p className="mb-4 text-gray-500 text-theme-sm dark:text-gray-400">
-        Leading Tailwind CSS Admin Template with 400+ UI Component and Pages.
-      </p>
+      <h3 className="mb-2 font-semibold text-white">Ada pertanyaan?</h3>
+      <p className="mb-4 text-white-200 text-theme-sm">Hubungi kami jika Anda bingung atau butuh bantuan.</p>
       <a
-        href="https://tailadmin.com/pricing"
+        href="https://wa.me/628123456789" // Ganti dengan nomor WhatsApp Anda
         target="_blank"
-        rel="nofollow"
-        className="flex items-center justify-center p-3 font-medium text-white rounded-lg bg-brand-500 text-theme-sm hover:bg-brand-600"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center p-3 font-medium text-white rounded-full bg-teal-700 text-theme-sm hover:bg-teal-600 transition-colors"
       >
-        Purchase Plan
+        Hubungi Kami
       </a>
     </div>
   );
